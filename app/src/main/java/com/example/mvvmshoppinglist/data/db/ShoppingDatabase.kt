@@ -9,7 +9,8 @@ import com.example.mvvmshoppinglist.data.db.entities.ShoppingItem
 
 @Database(
     entities = [ShoppingItem::class],
-    version = 2
+    version = 3,
+    exportSchema = false
 )
 abstract class ShoppingDatabase : RoomDatabase() {
     abstract fun getShoppingDao(): ShoppingDao
