@@ -15,20 +15,15 @@ class AddShoppingItemDialog(context: Context, private var addDialogListener: Add
     private lateinit var binding: DialogAddShoppingItemBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        binding = DialogAddShoppingItemBinding.inflate(layoutInflater)
         // supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
-        setContentView(R.layout.dialog_add_shopping_item)
+        setContentView(binding.root)
 
         binding.tvAdd.setOnClickListener {
             val name = binding.etName.text.toString()
-            val amount = binding.etAmount.text.toString().toInt()
-            if (name.isEmpty()) {
-                Toast.makeText(context, "Please enter all the information", Toast.LENGTH_SHORT)
-                    .show()
-                return@setOnClickListener
-            }
+            val amount = binding.etAmount.text.toString().toIntOrNull()
 
-            val item = ShoppingItem(name, amount)
+            val item = ShoppingItem(name, amount?:-1)
             addDialogListener.onAddButtonClicked(item)
             dismiss()
         }

@@ -1,6 +1,7 @@
 package com.example.mvvmshoppinglist.ui.shoppinglist
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -22,20 +23,31 @@ class ShoppingActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(ShoppingViewModel::class.java)
 
         val adapter = ShoppingItemAdapter(arrayListOf(), viewModel)
-        viewModel.itemList.observe(this) {
+        viewModel.itemList?.observe(this) {
             it?.let {
-                adapter.setData(it)
+                adapter.setData(it as ArrayList<ShoppingItem>)
             }
         }
         binding.rvShoppingItems.adapter = adapter
 
         binding.fab.setOnClickListener {
-            AddShoppingItemDialog(this,
+            val dialog = AddShoppingItemDialog(this,
                 object : AddDialogListener {
                     override fun onAddButtonClicked(item: ShoppingItem) {
                         viewModel.upsert(item)
+                        if (item.name.isBlank()) {
+                            Toast.makeText(
+                                this@ShoppingActivity,
+                                "Please enter all the information",
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                        }
+
+
                     }
-                }).show()
+                })
+            dialog.show()
         }
 
     }

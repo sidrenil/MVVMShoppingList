@@ -11,8 +11,7 @@ class ShoppingViewModel:ViewModel() {
 
     private val repository = ShoppingRepository
 
-    private var _itemList : MutableLiveData<ArrayList<ShoppingItem>> = MutableLiveData(arrayListOf())
-    val itemList get() = _itemList
+    val itemList = getAllShoppingItems()
 
     fun upsert(item: ShoppingItem) = CoroutineScope(Dispatchers.Main).launch {
         repository.upsert(item)
@@ -22,5 +21,5 @@ class ShoppingViewModel:ViewModel() {
         repository.delete(item)
     }
 
-    fun getAllShoppingItems() = repository.getAllShoppingItems()
+    private fun getAllShoppingItems() = repository.getAllShoppingItems()
 }
