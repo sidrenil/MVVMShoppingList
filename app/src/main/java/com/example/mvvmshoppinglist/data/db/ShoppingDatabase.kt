@@ -17,18 +17,18 @@ abstract class ShoppingDatabase : RoomDatabase() {
 
     companion object {
         @Volatile
-        private var instance: ShoppingDatabase? = null
-        private val LOCK = Any()
+        private var INSTANCE: ShoppingDatabase? = null
 
-
-        operator fun invoke(context: Context) = instance ?: synchronized(LOCK) {
-            instance ?: createDatabase(context).also { instance = it }
+        fun initializeDatabase(context: Context) {
+            synchronized(this) {
+                INSTANCE = Room.databaseBuilder(
+                    context.applicationContext,
+                    ShoppingDatabase::class.java,
+                    "shoppingList"
+                ).build()
+            }
         }
 
-        private fun createDatabase(context: Context) =
-            Room.databaseBuilder(
-                context.applicationContext,
-                ShoppingDatabase::class.java, "ShoppingDB.db"
-            ).build()
+        fun getDatabase() = INSTANCE
     }
 }
