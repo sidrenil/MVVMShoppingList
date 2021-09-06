@@ -2,6 +2,7 @@ package com.example.mvvmshoppinglist.ui.shoppinglist
 
 import android.content.Context
 import android.os.Bundle
+import android.view.Window
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDialog
 import com.example.mvvmshoppinglist.R
@@ -27,7 +28,7 @@ class AddShoppingItemDialog(context: Context, private var addDialogListener: Add
                 return@setOnClickListener
             }
 
-            val item = ShoppingItem(0, name, amount)
+            val item = ShoppingItem(name, amount)
             addDialogListener.onAddButtonClicked(item)
             dismiss()
         }

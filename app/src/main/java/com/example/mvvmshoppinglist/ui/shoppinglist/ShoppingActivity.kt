@@ -14,19 +14,21 @@ class ShoppingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityShoppingBinding
     private lateinit var viewModel: ShoppingViewModel
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_shopping)
 
         viewModel = ViewModelProvider(this).get(ShoppingViewModel::class.java)
 
-        val adapter = ShoppingItemAdapter()
+        val adapter = ShoppingItemAdapter(arrayListOf(), viewModel)
         viewModel.itemList.observe(this) {
             it?.let {
                 adapter.setData(it)
             }
         }
         binding.rvShoppingItems.adapter = adapter
+
         binding.fab.setOnClickListener {
             AddShoppingItemDialog(this,
                 object : AddDialogListener {

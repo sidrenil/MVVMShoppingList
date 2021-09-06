@@ -1,5 +1,6 @@
 package com.example.mvvmshoppinglist.ui.shoppinglist
 
+
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.mvvmshoppinglist.data.db.entities.ShoppingItem

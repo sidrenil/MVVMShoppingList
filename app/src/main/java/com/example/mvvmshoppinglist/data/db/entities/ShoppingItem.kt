@@ -7,9 +7,10 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "shopping_items")
 data class ShoppingItem(
+    @ColumnInfo(name = "aitem_name")
+    var name: String,
+    @ColumnInfo(name = "aitem_amount")
+    var amount: Int,
     @PrimaryKey(autoGenerate = true)
-    var _id:Int = 0,
-    var name:String,
-    var amount:Int
-) {
-}
+    val id: Long = 0
+)
