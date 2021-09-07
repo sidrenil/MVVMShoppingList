@@ -38,7 +38,7 @@ class ShoppingActivity : AppCompatActivity() {
                         if (item.name.isBlank()) {
                             Toast.makeText(
                                 this@ShoppingActivity,
-                                "Please enter all the information",
+                                "Lütfen tüm bilgileri girin",
                                 Toast.LENGTH_SHORT
                             )
                                 .show()
