@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mvvmshoppinglist.data.db.entities.ShoppingItem
 import com.example.mvvmshoppinglist.databinding.ShoppingItemBinding
+
 import com.example.mvvmshoppinglist.ui.shoppinglist.ShoppingViewModel
 
 

@@ -15,9 +15,9 @@ class ShoppingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityShoppingBinding
     private lateinit var viewModel: ShoppingViewModel
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_shopping)
 
         viewModel = ViewModelProvider(this).get(ShoppingViewModel::class.java)
@@ -43,12 +43,9 @@ class ShoppingActivity : AppCompatActivity() {
                             )
                                 .show()
                         }
-
-
                     }
                 })
             dialog.show()
         }
-
     }
 }
